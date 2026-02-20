@@ -157,7 +157,6 @@ $.jgrid.extend({
 			$t.p.gridview =  true;
 			//bvn
 			if($t.p.rowTotal === null && !$t.p.treeGrid_bigData ) { $t.p.rowNum = 10000; }
-			$t.p.multiselect = false;
 			// $t.p.rowList = [];
 			$t.p.expColInd = 0;
 			pico = classes.icon_plus;

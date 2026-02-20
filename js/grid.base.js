@@ -5177,6 +5177,12 @@ $.fn.jqGrid = function( pin ) {
 			ts.p.treeGrid = false;
 			ts.p.gridview = true;
 		}
+		if(this.p.multiselect) {
+			var allRowsSelectTitle=$.jgrid.getRegional(ts, "defaults.selectAllLines");
+			allRowsSelectTitle=allRowsSelectTitle ? allRowsSelectTitle : $.jgrid.regional['en'].defaults.selectAllLines;
+			this.p.colNames.unshift("<input role='checkbox' id='cb_"+this.p.id+"' class='cbox' type='checkbox' title='"+allRowsSelectTitle+"'/>");
+			this.p.colModel.unshift({name:'cb',width:$.jgrid.cell_width ? ts.p.multiselectWidth+ts.p.cellLayout : ts.p.multiselectWidth,sortable:false,resizable:false,hidedlg:true,search:false,align:'center',fixed:true, frozen: true, classes : "jqgrid-multibox", labelClasses: "jqgrid-multibox" });
+		}
 		if(this.p.treeGrid === true) {
 			try { $(this).jqGrid("setTreeGrid");} catch (_) {}
 			if(ts.p.datatype !== "local") { 
@@ -5192,12 +5198,6 @@ $.fn.jqGrid = function( pin ) {
 			this.p.colNames.unshift(ts.p.searchColOptions.colName);
 			this.p.colModel.unshift({name:'sc',width: ts.p.searchColOptions.colWidth,sortable:false,hidedlg:true,search:false,align:'left',fixed:true, frozen: true, colmenu: ts.p.searchColOptions.colmenu, classes : "jqgrid-searchcol", labelClasses: "jqgrid-searchcolumn",
 					coloptions : {sorting:false, columns: false, filtering: false, seraching:false, grouping:false, freeze : false}});
-		}
-		if(this.p.multiselect) {
-			var allRowsSelectTitle=$.jgrid.getRegional(ts, "defaults.selectAllLines");
-			allRowsSelectTitle=allRowsSelectTitle ? allRowsSelectTitle : $.jgrid.regional['en'].defaults.selectAllLines;
-			this.p.colNames.unshift("<input role='checkbox' id='cb_"+this.p.id+"' class='cbox' type='checkbox' title='"+allRowsSelectTitle+"'/>");
-			this.p.colModel.unshift({name:'cb',width:$.jgrid.cell_width ? ts.p.multiselectWidth+ts.p.cellLayout : ts.p.multiselectWidth,sortable:false,resizable:false,hidedlg:true,search:false,align:'center',fixed:true, frozen: true, classes : "jqgrid-multibox", labelClasses: "jqgrid-multibox" });
 		}
 		if(this.p.rownumbers) {
 			this.p.colNames.unshift("");
