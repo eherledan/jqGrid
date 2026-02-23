@@ -5183,6 +5183,7 @@ $.fn.jqGrid = function( pin ) {
 			ts.p.gridview = true;
 		}
 		if(this.p.multiselect) {
+            this.p.subGrid = false;
 			var allRowsSelectTitle=$.jgrid.getRegional(ts, "defaults.selectAllLines");
 			allRowsSelectTitle=allRowsSelectTitle ? allRowsSelectTitle : $.jgrid.regional['en'].defaults.selectAllLines;
 			this.p.colNames.unshift("<input role='checkbox' id='cb_"+this.p.id+"' class='cbox' type='checkbox' title='"+allRowsSelectTitle+"'/>");
