@@ -1,7 +1,7 @@
 /**
 *
-* @license Guriddo jqGrid JS - v5.8.10 - 2025-04-03
-* Copyright(c) 2008, Tony Tomov, tony@trirand.com
+* @license Guriddo @eherledan/jqgrid JS - v5.8.13 - 2026-02-25
+* Copyright(c) 2008, , 
 * 
 * License: http://guriddo.net/?page_id=103334
 */
@@ -5182,8 +5182,10 @@ $.fn.jqGrid = function( pin ) {
 			ts.p.treeGrid = false;
 			ts.p.gridview = true;
 		}
+		if(this.p.subGrid && this.p.treeGrid === false) {
+			try { $(ts).jqGrid("setSubGrid");} catch (s){}
+		}
 		if(this.p.multiselect) {
-            this.p.subGrid = false;
 			var allRowsSelectTitle=$.jgrid.getRegional(ts, "defaults.selectAllLines");
 			allRowsSelectTitle=allRowsSelectTitle ? allRowsSelectTitle : $.jgrid.regional['en'].defaults.selectAllLines;
 			this.p.colNames.unshift("<input role='checkbox' id='cb_"+this.p.id+"' class='cbox' type='checkbox' title='"+allRowsSelectTitle+"'/>");
@@ -5196,9 +5198,6 @@ $.fn.jqGrid = function( pin ) {
 			} else if(ts.p.keyName !== false) {
 				ts.p.localReader = { id: ts.p.keyName };
 			}
-		}
-		if(this.p.subGrid) {
-			try { $(ts).jqGrid("setSubGrid");} catch (s){}
 		}
 		if(this.p.searchCols) {
 			this.p.colNames.unshift(ts.p.searchColOptions.colName);

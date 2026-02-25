@@ -5177,6 +5177,9 @@ $.fn.jqGrid = function( pin ) {
 			ts.p.treeGrid = false;
 			ts.p.gridview = true;
 		}
+		if(this.p.subGrid && this.p.treeGrid === false) {
+			try { $(ts).jqGrid("setSubGrid");} catch (s){}
+		}
 		if(this.p.multiselect) {
 			var allRowsSelectTitle=$.jgrid.getRegional(ts, "defaults.selectAllLines");
 			allRowsSelectTitle=allRowsSelectTitle ? allRowsSelectTitle : $.jgrid.regional['en'].defaults.selectAllLines;
@@ -5190,9 +5193,6 @@ $.fn.jqGrid = function( pin ) {
 			} else if(ts.p.keyName !== false) {
 				ts.p.localReader = { id: ts.p.keyName };
 			}
-		}
-		if(this.p.subGrid) {
-			try { $(ts).jqGrid("setSubGrid");} catch (s){}
 		}
 		if(this.p.searchCols) {
 			this.p.colNames.unshift(ts.p.searchColOptions.colName);
